@@ -1,5 +1,5 @@
 import unittest
-from unittest import mock
+from unittest.mock import patch
 from io import StringIO
 from functions_exercise.functions_exercise2 import *
 
@@ -38,6 +38,7 @@ class TestUserInputFunctions(unittest.TestCase):
         result = validate_username("John123")
         self.assertFalse(result)
 
+    @patch('sys.stdout', new_callable=StringIO)
     def test_display_user_info_output(self, mock_stdout):
         result = display_user_info("JohnDoe", 25, "john.doe@example.com")
         expected_output = "\nUser Information:\nUsername : JohnDoe\nAge      : 25\nEmail    : john.doe@example.com"
